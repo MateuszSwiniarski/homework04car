@@ -6,10 +6,9 @@ import com.rodzyn.homework04car.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("cars")
@@ -41,4 +40,12 @@ public class CarController {
         System.out.println(car);
         return "redirect:/cars";
     }
+
+    @GetMapping(value = "/{id}")
+    public String deleteCar(@PathVariable("id") Integer id){
+        System.out.println(carService.getCarById((long)id));
+        carService.removeCarById((long) id);
+        return "redirect:/cars";
+    }
+
 }

@@ -13,5 +13,6 @@ public interface CarService {
     List<Car> getCarByMark(String mark);
     boolean addCar(Car car);
     boolean modCar(Car car);
-    boolean removeCar(Car car);
+    void removeCar(Car car);
+    void removeCarById(Long id);
 }

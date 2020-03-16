@@ -13,12 +13,13 @@ import java.util.stream.Collectors;
 public class CarServiceImp implements CarService {
 
     public CarServiceImp(){
+        carList = new ArrayList<>();
         carList.add(new Car(1L, "audi", "A5", Color.BLACK));
         carList.add(new Car(2L, "prosche", "911", Color.RED));
         carList.add(new Car(3L, "bmw", "i8", Color.WHITE));
     }
 
-    private List<Car> carList = new ArrayList<>();
+    private List<Car> carList;
 
     @Override
     public List<Car> getCars() {
@@ -33,19 +34,19 @@ public class CarServiceImp implements CarService {
 
     @Override
     public List<Car> getCarByColor(String color) {
-        List<Car> carColor = getCars().stream().filter(car -> car.getColor().equals(color)).collect(Collectors.toList());
+        List<Car> carColor = carList.stream().filter(car -> car.getColor().equals(color)).collect(Collectors.toList());
         return carColor;
     }
 
     @Override
     public List<Car> getCarByMark(String mark) {
-        List<Car> carMark = getCars().stream().filter(car -> car.getMark().equals(mark)).collect(Collectors.toList());
+        List<Car> carMark = carList.stream().filter(car -> car.getMark().equals(mark)).collect(Collectors.toList());
         return carMark;
     }
 
     @Override
     public boolean addCar(Car car) {
-        boolean add = getCars().add(car);
+        boolean add = carList.add(car);
         return true;
     }
 
@@ -53,13 +54,17 @@ public class CarServiceImp implements CarService {
     public boolean modCar(Car newCar) {
         Optional<Car> first = getCars().stream().filter(car -> car.getId() == newCar.getId()).findFirst();
         getCars().remove(first);
-        boolean add = getCars().add(newCar);
+        boolean add = carList.add(newCar);
         return true;
     }
 
     @Override
-    public boolean removeCar(Car car) {
-        boolean remove = getCars().remove(car);
-        return remove;
+    public void removeCar(Car car) {
+        carList.remove(car);
+    }
+
+    @Override
+    public void removeCarById(Long id) {
+        carList.removeIf(car -> car.getId() == id);
     }
 }
