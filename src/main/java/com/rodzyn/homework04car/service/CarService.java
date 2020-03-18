@@ -12,7 +12,7 @@ public interface CarService {
     List<Car> getCarByColor(String color);
     List<Car> getCarByMark(String mark);
     boolean addCar(Car car);
-    boolean modCar(Car car);
+    void modCar(Car car);
     void removeCar(Car car);
     void removeCarById(Long id);
 }

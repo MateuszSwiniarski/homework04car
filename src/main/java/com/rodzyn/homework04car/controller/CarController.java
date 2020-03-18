@@ -59,6 +59,7 @@ public class CarController {
     @PostMapping("/modify")
     public String modifyCar(@ModelAttribute Car carId){
         System.out.println(carId);
+        carService.modCar(carId);
         return "redirect:/cars";
     }
 
