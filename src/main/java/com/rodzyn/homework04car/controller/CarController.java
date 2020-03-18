@@ -48,4 +48,18 @@ public class CarController {
         return "redirect:/cars";
     }
 
+    @GetMapping("/modify/{id}")
+    public String modifyCar(@PathVariable("id") Integer id, Model model) {
+        Optional<Car> carById = carService.getCarById((long) id);
+        model.addAttribute("carId", carService.getCarById((long)id).get());
+        model.addAttribute("colors", Color.values());
+        return "modifycar";
+    }
+
+    @PostMapping("/modify")
+    public String modifyCar(@ModelAttribute Car carId){
+        System.out.println(carId);
+        return "redirect:/cars";
+    }
+
 }

@@ -29,12 +29,8 @@
             <td th:text="${car.getMark()}"/><br>
             <td th:text="${car.getModel()}"/><br>
             <td th:text="${car.getColor()}"/><br>
-            <td><a type="button" class="btn btn-primary" th:href="${'cars/'+car.id}">modify car</a></td>
+            <td><a type="button" class="btn btn-primary" th:href="${'cars/modify/'+car.id}">modify car</a></td>
             <td><a type="button" class="btn btn-danger" th:href="${'cars/'+car.id}">remove car</a></td>
-
-<!--            <td><a th:href="${'/cars/delete/'+car.id}">Usun</a></td><br>-->
-
-<!--            <td><a th:href="${'cars/carnew/'+car.id}">update car</a></td><br>-->
         </tr>
         </tbody>
     </table>

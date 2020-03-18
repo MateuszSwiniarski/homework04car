@@ -53,7 +53,7 @@ public class CarServiceImp implements CarService {
     @Override
     public boolean modCar(Car newCar) {
         Optional<Car> first = getCars().stream().filter(car -> car.getId() == newCar.getId()).findFirst();
-        getCars().remove(first);
+        carList.removeIf(car -> car.getId()== newCar.getId());
         boolean add = carList.add(newCar);
         return true;
     }
